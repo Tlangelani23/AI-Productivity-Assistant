@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { MessageSquare, Send, Sparkles, User, Loader2, Info } from "lucide-react";
+import { MessageSquare, Send, Sparkles, User, Loader2, Info, Mountain } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { generateAI } from "@/lib/ai.functions";
 import { saveHistoryItem } from "@/lib/history";
@@ -12,8 +12,8 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
-      { title: "AI Chat — FlowDesk AI" },
-      { name: "description", content: "Chat with your AI workplace assistant." },
+      { title: "AI Travel Chat — CapeConnect AI" },
+      { name: "description", content: "Chat with your Cape Town AI travel assistant." },
     ],
   }),
   component: ChatPage,
@@ -22,10 +22,11 @@ export const Route = createFileRoute("/chat")({
 type Msg = { role: "user" | "assistant"; content: string };
 
 const suggestions = [
-  "Draft a follow-up email to a client",
-  "Summarize this week's team standups",
-  "Help me prioritize my tasks for today",
-  "Write a project status update",
+  "Plan my three-day Cape Town holiday.",
+  "Best beaches near the city.",
+  "Best restaurants near V&A Waterfront.",
+  "What should I pack for winter?",
+  "How much should I budget for 5 days?",
 ];
 
 function ChatPage() {
@@ -50,7 +51,7 @@ function ChatPage() {
       const res = await generate({
         data: {
           system:
-            "You are FlowDesk AI, a professional workplace productivity assistant. Be concise, helpful, and well-structured. Use markdown formatting when useful.",
+            "You are CapeConnect AI, a friendly and knowledgeable Cape Town travel assistant. Give concise, practical, well-structured answers about attractions, restaurants, safety, weather, transport, culture, and budgeting. Use ZAR for prices. Use markdown when useful.",
           messages: newMsgs,
         },
       });
@@ -65,14 +66,14 @@ function ChatPage() {
   };
 
   return (
-    <div className="flex h-[calc(100vh-8rem)] flex-col space-y-4">
+    <div className="flex h-[calc(100vh-10rem)] flex-col space-y-4">
       <header className="flex items-center gap-4">
         <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/10 text-primary">
           <MessageSquare className="h-6 w-6" />
         </div>
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">AI Chat Assistant</h1>
-          <p className="text-sm text-muted-foreground">Ask anything about your work.</p>
+          <h1 className="font-display text-3xl md:text-4xl">AI Travel Chat</h1>
+          <p className="text-sm text-muted-foreground">Ask anything about visiting Cape Town.</p>
         </div>
       </header>
 
@@ -80,12 +81,12 @@ function ChatPage() {
         <CardContent className="flex flex-1 flex-col p-0">
           <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto p-6">
             {messages.length === 0 && (
-              <div className="flex h-full flex-col items-center justify-center gap-6 py-12 text-center">
+              <div className="flex h-full flex-col items-center justify-center gap-6 py-8 text-center">
                 <div className="grid h-16 w-16 place-items-center rounded-3xl bg-primary/10 text-primary">
-                  <Sparkles className="h-7 w-7" />
+                  <Mountain className="h-7 w-7" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold">How can I help you today?</h3>
+                  <h3 className="font-display text-2xl">Where should we start?</h3>
                   <p className="mt-1 text-sm text-muted-foreground">Try a suggested prompt below.</p>
                 </div>
                 <div className="grid w-full max-w-2xl gap-2 sm:grid-cols-2">
@@ -155,7 +156,7 @@ function ChatPage() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Message FlowDesk AI…"
+                placeholder="Ask CapeConnect AI about Cape Town…"
                 className="h-12 rounded-2xl border-border/70 bg-background/70"
                 disabled={loading}
               />
@@ -165,7 +166,7 @@ function ChatPage() {
             </form>
             <p className="mt-2 flex items-start gap-1.5 text-[11px] text-muted-foreground">
               <Info className="mt-0.5 h-3 w-3 shrink-0" />
-              AI-generated content may contain inaccuracies. Verify important information. Do not share confidential company data.
+              AI-generated recommendations are provided for planning purposes only. Verify opening hours, prices, transport schedules, weather conditions, and safety information before travelling.
             </p>
           </div>
         </CardContent>

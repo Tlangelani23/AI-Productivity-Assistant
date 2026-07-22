@@ -181,10 +181,10 @@ export function AIWorkspace(props: Props) {
                   <Info className="h-3.5 w-3.5" /> Responsible AI
                 </div>
                 <p>
-                  AI-generated content may contain inaccuracies or outdated information. Always
-                  review and verify important information before using it for business or
-                  professional decisions. Do not enter confidential company information. Users
-                  remain responsible for final decisions.
+                  AI-generated recommendations are provided for planning purposes only. Verify
+                  opening hours, prices, transport schedules, weather conditions, and safety
+                  information before travelling. Do not rely solely on AI for important travel
+                  decisions.
                 </p>
               </div>
             )}
