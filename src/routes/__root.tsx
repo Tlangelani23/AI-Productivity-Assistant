@@ -79,30 +79,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FlowDesk AI — Work Smarter. Achieve More." },
+      { title: "CapeConnect AI | Developed by Tlangelani Chauke" },
       {
         name: "description",
         content:
-          "FlowDesk AI is your AI-powered workplace assistant for emails, meeting notes, task planning, research, and more.",
+          "CapeConnect AI is your AI-powered tourism assistant for exploring Cape Town — plan trips, discover attractions, and travel smarter.",
       },
-      { property: "og:title", content: "FlowDesk AI — Work Smarter. Achieve More." },
+      { property: "og:title", content: "CapeConnect AI — Discover Cape Town Like Never Before" },
       {
         property: "og:description",
-        content: "AI-powered workplace productivity assistant.",
+        content:
+          "Plan smarter, explore confidently, and experience the best of Cape Town with the power of Artificial Intelligence.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

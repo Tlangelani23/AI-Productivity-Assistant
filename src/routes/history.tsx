@@ -25,8 +25,8 @@ function HistoryPage() {
   useEffect(() => {
     const load = () => setItems(getHistory());
     load();
-    window.addEventListener("flowdesk-history-updated", load);
-    return () => window.removeEventListener("flowdesk-history-updated", load);
+    window.addEventListener("capeconnect-history-updated", load);
+    return () => window.removeEventListener("capeconnect-history-updated", load);
   }, []);
 
   const filtered = useMemo(() => {
