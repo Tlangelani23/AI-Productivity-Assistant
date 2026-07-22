@@ -12,8 +12,8 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — CapeConnect AI" },
-      { name: "description", content: "Manage your CapeConnect AI preferences." },
+      { title: "Settings — FlowDesk AI" },
+      { name: "description", content: "Manage your FlowDesk AI preferences." },
     ],
   }),
   component: SettingsPage,
@@ -36,7 +36,7 @@ function SettingsPage() {
   const toggleDark = (v: boolean) => {
     setDark(v);
     document.documentElement.classList.toggle("dark", v);
-    localStorage.setItem("cc-theme", v ? "dark" : "light");
+    localStorage.setItem("fd-theme", v ? "dark" : "light");
   };
 
   return (
@@ -73,7 +73,7 @@ function SettingsPage() {
             <Row label="Dark mode" desc="Use a darker workspace theme.">
               <Switch checked={dark} onCheckedChange={toggleDark} />
             </Row>
-            <Row label="Language" desc="Interface language for CapeConnect AI.">
+            <Row label="Language" desc="Interface language for FlowDesk AI.">
               <Select value={language} onValueChange={setLanguage}>
                 <SelectTrigger className="h-10 w-36 rounded-2xl"><SelectValue /></SelectTrigger>
                 <SelectContent>
@@ -89,7 +89,7 @@ function SettingsPage() {
         <Card className="glass-card rounded-3xl">
           <CardContent className="space-y-5 p-6">
             <h3 className="text-base font-semibold">Notifications</h3>
-            <Row label="In-app notifications" desc="Show alerts inside CapeConnect AI.">
+            <Row label="In-app notifications" desc="Show alerts inside FlowDesk AI.">
               <Switch checked={notifications} onCheckedChange={setNotifications} />
             </Row>
             <Row label="Email alerts" desc="Send important updates to your inbox.">

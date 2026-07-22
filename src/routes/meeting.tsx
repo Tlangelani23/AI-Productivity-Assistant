@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { NotebookPen } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { AIWorkspace } from "@/components/AIWorkspace";
@@ -8,57 +8,54 @@ import { AIWorkspace } from "@/components/AIWorkspace";
 export const Route = createFileRoute("/meeting")({
   head: () => ({
     meta: [
-      { title: "Travel Notes Summarizer — CapeConnect AI" },
-      { name: "description", content: "Turn itineraries, bookings, and articles into clear summaries." },
+      { title: "Meeting Summarizer — FlowDesk AI" },
+      { name: "description", content: "Turn messy notes into structured summaries." },
     ],
   }),
-  component: NotesPage,
+  component: MeetingPage,
 });
 
-function NotesPage() {
+function MeetingPage() {
   const [notes, setNotes] = useState("");
   return (
     <AIWorkspace
-      title="Travel Notes Summarizer"
-      subtitle="Paste an itinerary, booking, tour schedule or article — get a clear structured summary."
-      icon={<NotebookPen className="h-6 w-6" />}
-      historyKind="notes"
-      system="You are an expert travel-notes summarizer. Produce concise, well-structured summaries with places, times, and action items."
+      title="Meeting Notes Summarizer"
+      subtitle="Turn raw notes into an executive summary with actions."
+      icon={<FileText className="h-6 w-6" />}
+      historyKind="meeting"
+      system="You are an expert meeting summarizer. Produce concise, well-structured summaries."
       buildPrompt={() => {
         if (!notes.trim()) return null;
-        return `Summarize the following travel content. Return the response in this exact structure with markdown headings:
+        return `Summarize the following meeting notes. Return the response in this exact structure with markdown headings:
 
-## Summary
+## Executive Summary
 (2-3 sentences)
 
-## Important Places
-- Name — quick note
+## Key Decisions
+- bullet list
 
-## Key Times
-- Time — event
+## Action Items
+- [Owner] Task — Due date
 
 ## Deadlines
 - Item — Date
 
-## Recommendations
-- bullet list
+## People Responsible
+- Name — responsibilities
 
-## Action Items
-- [ ] Task
-
-Content:
+Meeting notes:
 ${notes}`;
       }}
       inputs={
         <div className="space-y-2">
           <Label className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-            Paste travel content
+            Paste meeting notes
           </Label>
           <Textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            placeholder="Paste an itinerary, booking confirmation, tour schedule, or travel article…"
-            className="min-h-[420px] rounded-2xl"
+            placeholder="Paste your raw meeting notes, transcript, or bullet points here…"
+            className="min-h-[380px] rounded-2xl"
           />
         </div>
       }

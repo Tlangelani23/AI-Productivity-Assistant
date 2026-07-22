@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/history")({
   head: () => ({
     meta: [
-      { title: "History — CapeConnect AI" },
+      { title: "History — FlowDesk AI" },
       { name: "description", content: "Browse and reuse your AI responses." },
     ],
   }),
@@ -25,8 +25,8 @@ function HistoryPage() {
   useEffect(() => {
     const load = () => setItems(getHistory());
     load();
-    window.addEventListener("capeconnect-history-updated", load);
-    return () => window.removeEventListener("capeconnect-history-updated", load);
+    window.addEventListener("flowdesk-history-updated", load);
+    return () => window.removeEventListener("flowdesk-history-updated", load);
   }, []);
 
   const filtered = useMemo(() => {

@@ -11,14 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as SavedRouteImport } from './routes/saved'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as MeetingRouteImport } from './routes/meeting'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as EmailRouteImport } from './routes/email'
-import { Route as DestinationsRouteImport } from './routes/destinations'
 import { Route as ChatRouteImport } from './routes/chat'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TasksRoute = TasksRouteImport.update({
@@ -29,11 +26,6 @@ const TasksRoute = TasksRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SavedRoute = SavedRouteImport.update({
-  id: '/saved',
-  path: '/saved',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResearchRoute = ResearchRouteImport.update({
@@ -56,19 +48,9 @@ const EmailRoute = EmailRouteImport.update({
   path: '/email',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DestinationsRoute = DestinationsRouteImport.update({
-  id: '/destinations',
-  path: '/destinations',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ChatRoute = ChatRouteImport.update({
   id: '/chat',
   path: '/chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -79,41 +61,32 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/chat': typeof ChatRoute
-  '/destinations': typeof DestinationsRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/meeting': typeof MeetingRoute
   '/research': typeof ResearchRoute
-  '/saved': typeof SavedRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/chat': typeof ChatRoute
-  '/destinations': typeof DestinationsRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/meeting': typeof MeetingRoute
   '/research': typeof ResearchRoute
-  '/saved': typeof SavedRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/chat': typeof ChatRoute
-  '/destinations': typeof DestinationsRoute
   '/email': typeof EmailRoute
   '/history': typeof HistoryRoute
   '/meeting': typeof MeetingRoute
   '/research': typeof ResearchRoute
-  '/saved': typeof SavedRoute
   '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
 }
@@ -121,54 +94,42 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/chat'
-    | '/destinations'
     | '/email'
     | '/history'
     | '/meeting'
     | '/research'
-    | '/saved'
     | '/settings'
     | '/tasks'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/chat'
-    | '/destinations'
     | '/email'
     | '/history'
     | '/meeting'
     | '/research'
-    | '/saved'
     | '/settings'
     | '/tasks'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/chat'
-    | '/destinations'
     | '/email'
     | '/history'
     | '/meeting'
     | '/research'
-    | '/saved'
     | '/settings'
     | '/tasks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   ChatRoute: typeof ChatRoute
-  DestinationsRoute: typeof DestinationsRoute
   EmailRoute: typeof EmailRoute
   HistoryRoute: typeof HistoryRoute
   MeetingRoute: typeof MeetingRoute
   ResearchRoute: typeof ResearchRoute
-  SavedRoute: typeof SavedRoute
   SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
 }
@@ -187,13 +148,6 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/saved': {
-      id: '/saved'
-      path: '/saved'
-      fullPath: '/saved'
-      preLoaderRoute: typeof SavedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/research': {
@@ -224,25 +178,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/destinations': {
-      id: '/destinations'
-      path: '/destinations'
-      fullPath: '/destinations'
-      preLoaderRoute: typeof DestinationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/chat': {
       id: '/chat'
       path: '/chat'
       fullPath: '/chat'
       preLoaderRoute: typeof ChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -257,14 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   ChatRoute: ChatRoute,
-  DestinationsRoute: DestinationsRoute,
   EmailRoute: EmailRoute,
   HistoryRoute: HistoryRoute,
   MeetingRoute: MeetingRoute,
   ResearchRoute: ResearchRoute,
-  SavedRoute: SavedRoute,
   SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
 }

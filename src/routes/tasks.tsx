@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Map } from "lucide-react";
+import { CalendarCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -10,145 +10,76 @@ import { AIWorkspace } from "@/components/AIWorkspace";
 export const Route = createFileRoute("/tasks")({
   head: () => ({
     meta: [
-      { title: "AI Trip Planner — CapeConnect AI" },
-      { name: "description", content: "Create a personalized Cape Town itinerary with AI." },
+      { title: "AI Task Planner — FlowDesk AI" },
+      { name: "description", content: "Plan your day with AI-optimized schedules." },
     ],
   }),
-  component: TripPlannerPage,
+  component: TasksPage,
 });
 
-const INTERESTS = ["Adventure", "Nature", "Food", "Wine", "Culture", "Shopping", "Beach", "History"] as const;
-
-function TripPlannerPage() {
-  const [arrival, setArrival] = useState("");
-  const [departure, setDeparture] = useState("");
-  const [budget, setBudget] = useState("Mid-range");
-  const [travellers, setTravellers] = useState("2");
-  const [accommodation, setAccommodation] = useState("Boutique hotel");
-  const [transport, setTransport] = useState("Rental car");
-  const [interests, setInterests] = useState<string[]>(["Nature", "Food"]);
-  const [notes, setNotes] = useState("");
-
-  const toggle = (v: string) =>
-    setInterests((s) => (s.includes(v) ? s.filter((x) => x !== v) : [...s, v]));
+function TasksPage() {
+  const [tasks, setTasks] = useState("");
+  const [deadlines, setDeadlines] = useState("");
+  const [priority, setPriority] = useState("Balanced");
+  const [hours, setHours] = useState("9:00 - 17:00");
 
   return (
     <AIWorkspace
-      title="AI Trip Planner"
-      subtitle="Create a personalized Cape Town itinerary in seconds."
-      icon={<Map className="h-6 w-6" />}
-      historyKind="trip"
-      system="You are a Cape Town local travel expert. Build realistic, well-paced daily itineraries with specific attractions, restaurants, drive times, and budget estimates in South African Rand (ZAR)."
+      title="AI Task Planner"
+      subtitle="Get an optimized schedule with priorities and time blocks."
+      icon={<CalendarCheck className="h-6 w-6" />}
+      historyKind="tasks"
+      system="You are an expert productivity coach. Create realistic, time-blocked daily schedules."
       buildPrompt={() => {
-        if (!arrival || !departure) return null;
-        return `Plan a Cape Town trip.
+        if (!tasks.trim()) return null;
+        return `Create an optimized daily plan.
 
-Arrival: ${arrival}
-Departure: ${departure}
-Travellers: ${travellers}
-Budget: ${budget}
-Accommodation: ${accommodation}
-Transport: ${transport}
-Interests: ${interests.join(", ") || "General"}
-Notes: ${notes || "None"}
+Tasks:
+${tasks}
 
-Return in this exact structure with markdown:
+Deadlines:
+${deadlines || "None specified"}
 
-## Trip Overview
-(2-3 sentences)
+Priority style: ${priority}
+Working hours: ${hours}
 
-## Daily Itinerary
-### Day 1 — (Date)
-- Morning: attraction — travel time
-- Afternoon: ...
-- Evening: dinner at ...
-(repeat for each day)
+Return the plan in this structure:
 
-## Suggested Order & Travel Times
-- notes about geography and logistics
+## Daily Schedule
+(time-blocked list)
 
-## Estimated Budget (ZAR)
-- Accommodation
-- Food
-- Transport
-- Activities
-- Total
+## Priority Ranking
+1. Highest priority first
 
-## Recommendations & Tips
-- 5-7 bullet points including safety and local etiquette`;
+## Estimated Completion Times
+- Task — duration
+
+## Productivity Tips
+- 3-5 focused tips`;
       }}
       inputs={
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
-            <Field label="Arrival date">
-              <Input type="date" value={arrival} onChange={(e) => setArrival(e.target.value)} className="h-11 rounded-2xl" />
-            </Field>
-            <Field label="Departure date">
-              <Input type="date" value={departure} onChange={(e) => setDeparture(e.target.value)} className="h-11 rounded-2xl" />
-            </Field>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <Field label="Travellers">
-              <Input type="number" min={1} value={travellers} onChange={(e) => setTravellers(e.target.value)} className="h-11 rounded-2xl" />
-            </Field>
-            <Field label="Budget">
-              <Select value={budget} onValueChange={setBudget}>
-                <SelectTrigger className="h-11 rounded-2xl"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  {["Backpacker", "Mid-range", "Comfort", "Luxury"].map((v) => (
-                    <SelectItem key={v} value={v}>{v}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </Field>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            <Field label="Accommodation">
-              <Select value={accommodation} onValueChange={setAccommodation}>
-                <SelectTrigger className="h-11 rounded-2xl"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  {["Hostel", "Guesthouse", "Boutique hotel", "5-star hotel", "Airbnb"].map((v) => (
-                    <SelectItem key={v} value={v}>{v}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </Field>
-            <Field label="Transport">
-              <Select value={transport} onValueChange={setTransport}>
-                <SelectTrigger className="h-11 rounded-2xl"><SelectValue /></SelectTrigger>
-                <SelectContent>
-                  {["Rental car", "Uber / rideshare", "Guided tours", "Public transport", "Mix"].map((v) => (
-                    <SelectItem key={v} value={v}>{v}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </Field>
-          </div>
-          <Field label="Interests">
-            <div className="flex flex-wrap gap-2">
-              {INTERESTS.map((i) => {
-                const active = interests.includes(i);
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => toggle(i)}
-                    className={
-                      "rounded-full border px-3 py-1.5 text-xs font-medium transition-all " +
-                      (active
-                        ? "border-primary bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
-                        : "border-border bg-background hover:border-primary/50")
-                    }
-                  >
-                    {i}
-                  </button>
-                );
-              })}
-            </div>
+          <Field label="Today's tasks">
+            <Textarea value={tasks} onChange={(e) => setTasks(e.target.value)} placeholder="One task per line…" className="min-h-28 rounded-2xl" />
           </Field>
-          <Field label="Additional notes (optional)">
-            <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Anniversary trip, dietary needs, mobility limits…" className="min-h-20 rounded-2xl" />
+          <Field label="Deadlines (optional)">
+            <Textarea value={deadlines} onChange={(e) => setDeadlines(e.target.value)} placeholder="e.g. Report due by 3pm" className="min-h-20 rounded-2xl" />
           </Field>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Priority style">
+              <Select value={priority} onValueChange={setPriority}>
+                <SelectTrigger className="h-11 rounded-2xl"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {["Balanced", "Deep work first", "Quick wins first", "Deadline-driven"].map((v) => (
+                    <SelectItem key={v} value={v}>{v}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </Field>
+            <Field label="Working hours">
+              <Input value={hours} onChange={(e) => setHours(e.target.value)} className="h-11 rounded-2xl" />
+            </Field>
+          </div>
         </div>
       }
     />
