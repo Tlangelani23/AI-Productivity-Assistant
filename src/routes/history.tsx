@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/history")({
   head: () => ({
     meta: [
-      { title: "History — FlowDesk AI" },
+      { title: "History — CapeConnect AI" },
       { name: "description", content: "Browse and reuse your AI responses." },
     ],
   }),
