@@ -79,13 +79,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CapeConnect AI | Developed by Tlangelani Chauke" },
+      { title: "CapeConnect AI | Discover Cape Town Like Never Before" },
       {
         name: "description",
         content:
-          "CapeConnect AI is your AI-powered tourism assistant for exploring Cape Town — plan trips, discover attractions, and travel smarter.",
+          "Plan smarter, explore confidently, and experience the best of Cape Town with the power of Artificial Intelligence.",
       },
-      { property: "og:title", content: "CapeConnect AI — Discover Cape Town Like Never Before" },
+      { property: "og:title", content: "CapeConnect AI | Discover Cape Town Like Never Before" },
       {
         property: "og:description",
         content:
@@ -93,6 +93,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "CapeConnect AI | Discover Cape Town Like Never Before" },
+      { name: "twitter:description", content: "Plan smarter, explore confidently, and experience the best of Cape Town with the power of Artificial Intelligence." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4bcd2cea-6191-4ee7-928e-398352425c74/id-preview-c149ebf2--5640a8a9-4a95-408d-92cb-5e11850ca51d.lovable.app-1784724178011.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4bcd2cea-6191-4ee7-928e-398352425c74/id-preview-c149ebf2--5640a8a9-4a95-408d-92cb-5e11850ca51d.lovable.app-1784724178011.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

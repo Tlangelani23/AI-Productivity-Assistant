@@ -33,10 +33,10 @@ export const Route = createFileRoute("/")({
         content:
           "Plan smarter, explore confidently, and experience the best of Cape Town with the power of Artificial Intelligence.",
       },
-      { property: "og:title", content: "CapeConnect AI — Discover Cape Town Like Never Before" },
+      { property: "og:title", content: "CapeConnect AI | Discover Cape Town Like Never Before" },
       {
         property: "og:description",
-        content: "AI-powered tourism assistant for exploring Cape Town.",
+        content: "Plan smarter, explore confidently, and experience the best of Cape Town with the power of Artificial Intelligence.",
       },
     ],
   }),
