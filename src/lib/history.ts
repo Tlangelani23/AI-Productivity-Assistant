@@ -8,7 +8,7 @@ export type HistoryItem = {
   favorite?: boolean;
 };
 
-const KEY = "flowdesk-history";
+const KEY = "capeconnect-history";
 
 export function getHistory(): HistoryItem[] {
   if (typeof window === "undefined") return [];
