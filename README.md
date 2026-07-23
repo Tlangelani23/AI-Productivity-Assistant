@@ -232,16 +232,41 @@ npm run build
 
 ---
 
-# 📸 Screenshots
+# 📸 Application Screenshots
 
-Add screenshots of:
+## 🏠 Landing Page
 
-- Landing Page
-- Dashboard
-- AI Trip Planner
-- Smart Email Generator
-- AI Chat
-- About Developer
+![Landing Page](./landing-page.png)
+
+---
+
+## 📊 Dashboard
+
+![Dashboard](public./dashboard.png)
+
+---
+
+## 🗺️ AI Trip Planner
+
+![Trip Planner](public./trip-planner.png)
+
+---
+
+## 📧 Smart Email Generator
+
+![Email Generator](./email-generator.png)
+
+---
+
+## 💬 AI Travel Chat
+
+![AI Chat](./chatbot.png)
+
+---
+
+## 👨‍💻 About Developer
+
+![About Developer](./about-developer.png)
 
 ---
 
